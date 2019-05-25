@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MarcasComponent } from './components/marcas/marcas.component';
+import { MarcasComponent } from './components/comun/marcas/marcas.component';
 
 @NgModule({
   declarations: [

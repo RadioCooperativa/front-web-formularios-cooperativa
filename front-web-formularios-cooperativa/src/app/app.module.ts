@@ -4,6 +4,14 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+//Mis servicios
+import { MarcaService } from './services/marca.service';
+
+//Para los formularios
+import { FormsModule } from '@angular/forms';
+
+import { HttpClientModule } from '@angular/common/http';
+
 //Mis componentes
 import { MarcasComponent } from './components/comun/marcas/marcas.component';
 import { MarcasaddComponent } from './components/comun/marcas/marcasadd.component';
@@ -22,9 +30,11 @@ import { InicioComponent } from './components/design/inicio/inicio.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [MarcaService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

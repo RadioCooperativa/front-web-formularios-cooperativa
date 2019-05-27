@@ -37,19 +37,62 @@ export class MarcaService {
       ));
   }
 
-  obtenerMarcas(){
+  actualizarMarca(nuevaMarca:Marca, id:string){
+      let parametros = JSON.stringify(nuevaMarca);
+
+      let headers = new HttpHeaders({
+          'Content-Type' : 'application/json'
+      });
+
+      let url = `${this.marcaBaseURL}/${id}`;
+
+      //Regresa un observable , se inserta o no
+      return this._http.put(url, parametros, { headers }).pipe(
+      map(res=>{
+        console.log(res);
+        return res;
+      },
+      error =>{
+        console.log(error);
+        return error;
+      }
+      ));
+  }
+
+  listarMarcas(){
     return this._http.get(this.marcaBaseURL)
     .pipe(
       map(
         resultado=>{
           console.log("resultado obtener =>", resultado);
           return resultado;
+          
         }
         ,error=>{
           console.error("error obtener =>", error);
+          return error;
         })
     );
      
     }
+
+    borrarMarca(id:string){
+        let url = `${this.marcaBaseURL}/${id}`;
+        return this._http.delete(url).pipe(map(
+          resultado=>{ 
+            return resultado; 
+          },
+          error => {
+            console.log(error);
+          }
+        ));
+    }
+
+    obtenerMarca(id:string){
+        let url = `${this.marcaBaseURL}/${id}`;
+        return this._http.get(url).pipe(map(resultado => resultado));
+    }
+
+
 }
 

@@ -19,7 +19,7 @@ export class MarcasComponent implements OnInit {
   marca:Marca[]=[];
 
   constructor(private _marcaService:MarcaService) {
-    this._marcaService.obtenerMarcas().subscribe(
+    this._marcaService.listarMarcas().subscribe(
     resultado =>{
       for(let item in resultado){
         console.log(resultado[item]);
@@ -30,6 +30,18 @@ export class MarcasComponent implements OnInit {
 
     });
    }
+
+  borrarMarca(id:string){
+    this._marcaService.borrarMarca(id).subscribe(
+      resultado =>{
+        if(resultado){
+          console.log(resultado);
+        }else{
+          delete this.marca[id];
+        }
+      }
+    )
+  }
 
   ngOnInit() {
   }
